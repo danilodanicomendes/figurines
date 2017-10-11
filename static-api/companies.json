@@ -1,0 +1,12 @@
+[
+	{
+		"name": "Impresa",
+		"address": "Edifício Impresa, Rua Calvet de Magalhães, 242 Paço de Arcos",
+		"postalCode": "2770-022",
+		"city": "Lisboa",
+		"coordinate": {
+			"latitude": 38.709466,
+			"longitude": -9.292752
+		}
+	}
+]

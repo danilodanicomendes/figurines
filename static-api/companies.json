@@ -1,5 +1,6 @@
 [
   {
+    "codeName": "impresa",
     "name": "Impresa",
     "address": "Edifício Impresa, Rua Calvet de Magalhães, 242 Paço de Arcos",
     "postalCode": "2770-022",
@@ -12,6 +13,7 @@
     }
   },
   {
+    "codeName": "lusa",
     "name": "Lusa",
     "address": "R. Dr. João Couto, Lote C",
     "postalCode": "1500-236",
@@ -24,6 +26,7 @@
     }
   },
   {
+    "codeName": "global_media_group",
     "name": "Global Media Group",
     "address": "Rua Tomás da Fonseca, Torre E, 3º",
     "postalCode": "1600-209",

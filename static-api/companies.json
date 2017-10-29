@@ -6,7 +6,7 @@
     "city": "Lisboa",
     "logo": "https://pbs.twimg.com/profile_images/705790834025824256/9_4naRxY.jpg",
     "website": "http://www.impresa.pt/",
-    "coordinate": {
+    "coordinates": {
       "latitude": 38.709466,
       "longitude": -9.292752
     }
@@ -18,7 +18,7 @@
     "city": "Lisboa",
     "logo": "http://www.lusa.pt/img/LUSA_top_logo.gif",
     "website": "http://www.globalmediagroup.pt",
-    "coordinate": {
+    "coordinates": {
       "latitude": 38.751020,
       "longitude": -9.189124
     }
@@ -30,7 +30,7 @@
     "city": "Lisboa",
     "logo": "http://www.globalmediagroup.pt/wp-content/themes/globalmediagrp/img/logo-globalmedia.png",
     "website": "http://www.globalmediagroup.pt",
-    "coordinate": {
+    "coordinates": {
       "latitude": 38.757201,
       "longitude": -9.175279
     }

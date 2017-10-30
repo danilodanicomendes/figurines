@@ -5,12 +5,14 @@
     "address": "Edifício Impresa, Rua Calvet de Magalhães, 242 Paço de Arcos",
     "postalCode": "2770-022",
     "city": "Lisboa",
-    "logo": "https://pbs.twimg.com/profile_images/705790834025824256/9_4naRxY.jpg",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_impresa.gif/170px-Logo_impresa.gif",
     "website": "http://www.impresa.pt/",
     "coordinates": {
       "latitude": 38.709466,
       "longitude": -9.292752
-    }
+    },
+    "insetColor": "#F44336",
+    "shortDescription": "Portuguese media conglomerate, headquartered in Paço de Arcos, in Oeiras municipality. It is the owner of SIC TV channel, and Expresso newspaper, among other leading media."
   },
   {
     "codeName": "lusa",
@@ -23,7 +25,9 @@
     "coordinates": {
       "latitude": 38.751020,
       "longitude": -9.189124
-    }
+    },
+    "insetColor": "#F44336",
+    "shortDescription": "Portuguese News Agency, is the largest Portuguese news agency, incorporated on 28 November 1986."
   },
   {
     "codeName": "global_media_group",
@@ -36,6 +40,8 @@
     "coordinates": {
       "latitude": 38.757201,
       "longitude": -9.175279
-    }
+    },
+    "insetColor": "#FF9800",
+    "shortDescription": "Portuguese media holding company founded by Portuguese sports mogul and FC Porto S.A.D.'s shareholder Joaquim Oliveira."
   }
 ]

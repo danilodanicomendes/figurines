@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import io.reactivex.Single;
-
 /**
  * Created by danilo on 21-10-2017.
  */

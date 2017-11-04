@@ -25,6 +25,10 @@ public class Company implements IEntity {
 
     private Coordinate coordinates;
 
+    private String insetColor;
+
+    private String shortDescription;
+
     public Company() {
     }
 
@@ -36,18 +40,27 @@ public class Company implements IEntity {
         postalCode = values.getAsString(CompanyTable._POSTAL_CODE);
         city = values.getAsString(CompanyTable._CITY);
         logo = values.getAsString(CompanyTable._LOGO);
+        insetColor = values.getAsString(CompanyTable._INSET_COLOR);
+        shortDescription = values.getAsString(CompanyTable._SHORT_DESCRIPTION);
         coordinates = new Coordinate(values.getAsLong(CompanyTable._COORDINATE_LATITUDE),
                 values.getAsLong(CompanyTable._COORDINATE_LONGITUDE));
     }
 
-    public String getcodeName() {
-        return codeName;
+    @Override
+    public ContentValues toContentValues() {
+        ContentValues values = new ContentValues();
+        values.put(CompanyTable._CODE_NAME, codeName);
+        values.put(CompanyTable._NAME, name);
+        values.put(CompanyTable._ADDRESS, address);
+        values.put(CompanyTable._POSTAL_CODE, postalCode);
+        values.put(CompanyTable._CITY, city);
+        values.put(CompanyTable._LOGO, logo);
+        values.put(CompanyTable._COORDINATE_LATITUDE, coordinates.getLatitude());
+        values.put(CompanyTable._COORDINATE_LONGITUDE, coordinates.getLongitude());
+        values.put(CompanyTable._INSET_COLOR, insetColor);
+        values.put(CompanyTable._SHORT_DESCRIPTION, shortDescription);
+        return values;
     }
-
-    public void setcodeName(String codeName) {
-        this.codeName = codeName;
-    }
-
 
     public String getName() {
         return name;
@@ -97,17 +110,27 @@ public class Company implements IEntity {
         this.logo = logo;
     }
 
-    @Override
-    public ContentValues toContentValues() {
-        ContentValues values = new ContentValues();
-        values.put(CompanyTable._CODE_NAME, codeName);
-        values.put(CompanyTable._NAME, name);
-        values.put(CompanyTable._ADDRESS, address);
-        values.put(CompanyTable._POSTAL_CODE, postalCode);
-        values.put(CompanyTable._CITY, city);
-        values.put(CompanyTable._LOGO, logo);
-        values.put(CompanyTable._COORDINATE_LATITUDE, coordinates.getLatitude());
-        values.put(CompanyTable._COORDINATE_LONGITUDE, coordinates.getLongitude());
-        return values;
+    public String getCodeName() {
+        return codeName;
+    }
+
+    public void setCodeName(String codeName) {
+        this.codeName = codeName;
+    }
+
+    public String getInsetColor() {
+        return insetColor;
+    }
+
+    public void setInsetColor(String insetColor) {
+        this.insetColor = insetColor;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }

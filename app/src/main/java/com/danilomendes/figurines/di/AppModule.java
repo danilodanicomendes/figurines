@@ -2,9 +2,6 @@ package com.danilomendes.figurines.di;
 
 import android.app.Application;
 
-import com.danilomendes.figurines.R;
-import com.danilomendes.figurines.utils.L;
-
 import javax.inject.Singleton;
 
 import dagger.Module;

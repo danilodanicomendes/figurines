@@ -46,16 +46,19 @@ class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.ViewHol
     static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mTitle;
         private ImageView mLogo;
+        private TextView mShortDescription;
 
         ViewHolder(View itemView) {
             super(itemView);
             mTitle = itemView.findViewById(R.id.tv_name);
             mLogo = itemView.findViewById(R.id.iv_logo);
+            mShortDescription = itemView.findViewById(R.id.tv_short_description);
         }
 
         void setupViewHolder(Company company) {
             mTitle.setText(company.getName());
             Picasso.with(mLogo.getContext()).load(company.getLogo()).into(mLogo);
+            mShortDescription.setText(company.getShortDescription());
         }
     }
 }

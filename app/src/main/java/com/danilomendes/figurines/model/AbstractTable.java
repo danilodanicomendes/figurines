@@ -8,10 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.danilomendes.figurines.model.entity.IEntity;
 import com.danilomendes.figurines.utils.Helper;
-import com.danilomendes.figurines.utils.L;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +19,14 @@ import io.reactivex.Single;
  */
 abstract class AbstractTable<T extends IEntity> implements BaseColumns {
 
-    private SQLiteDatabase db;
+    SQLiteDatabase db;
 
     abstract void onCreate(SQLiteDatabase db);
-
     abstract String getTableName();
     abstract String[] getColumns();
+    abstract T instantiateEntity(ContentValues values);
 
-    public void setDb(SQLiteDatabase db) {
+    void setDb(SQLiteDatabase db) {
         this.db = db;
     }
 
@@ -41,7 +38,8 @@ abstract class AbstractTable<T extends IEntity> implements BaseColumns {
         db.beginTransaction();
         try {
             for (T entry : entries) {
-                db.insert(getTableName(), null, entry.toContentValues());
+                db.insertWithOnConflict(getTableName(), null,
+                        entry.toContentValues(), SQLiteDatabase.CONFLICT_REPLACE);
             }
 
             db.setTransactionSuccessful();
@@ -63,28 +61,13 @@ abstract class AbstractTable<T extends IEntity> implements BaseColumns {
             while (cursor.moveToNext()) {
                 ContentValues values = new ContentValues(columns.length);
                 Helper.cursorRowToContentValues(cursor, values);
-                result.add(getInstanceOfT(values));
+                result.add(instantiateEntity(values));
             }
         } finally {
             closeCursor(cursor);
         }
 
         return Single.just(result);
-    }
-
-    @SuppressWarnings("unchecked")
-    private T getInstanceOfT(ContentValues values) {
-        ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
-        Class<T> tClass = (Class<T>) type.getActualTypeArguments()[0];
-
-        try {
-            return tClass.getConstructor(ContentValues.class).newInstance(values);
-        } catch (InstantiationException | IllegalAccessException
-                | InvocationTargetException | NoSuchMethodException e) {
-            L.log("Error instantiating T " + tClass.getSimpleName(), e);
-            throw new RuntimeException(tClass.getSimpleName()
-                    + " must have a constructor with ContentValues.");
-        }
     }
 
     private void closeCursor(Cursor cursor) {

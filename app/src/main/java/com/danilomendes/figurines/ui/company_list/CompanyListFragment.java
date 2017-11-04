@@ -2,7 +2,7 @@ package com.danilomendes.figurines.ui.company_list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.danilomendes.figurines.R;
 import com.danilomendes.figurines.model.entity.Company;
 import com.danilomendes.figurines.ui.AbstractFragment;
+import com.danilomendes.figurines.ui.utils.views.CustomItemDecoration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,8 +36,10 @@ public class CompanyListFragment extends AbstractFragment implements CompanyList
 
         mProgressBar = root.findViewById(R.id.pb_load);
         mRecyclerView = root.findViewById(R.id.rv_company_list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),
-                3, GridLayoutManager.VERTICAL, false));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.addItemDecoration(new CustomItemDecoration(getContext()
+                .getResources().getDimensionPixelSize(R.dimen.list_item_divider_height)));
 
         return root;
     }
@@ -80,5 +83,10 @@ public class CompanyListFragment extends AbstractFragment implements CompanyList
     @Override
     protected void injectDependencies() {
         getApplication().getNetworkComponent().inject(this);
+    }
+
+    @Override
+    public int getToolbarTitle() {
+        return R.string.fragment_comany_list;
     }
 }

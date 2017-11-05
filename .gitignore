@@ -7,3 +7,12 @@
 /build
 /captures
 .externalNativeBuild
+.idea/
+app/libs/
+app/src/main/res/xml/
+app/src/test/java/com/danilomendes/figurines/ui/
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+settings.gradle

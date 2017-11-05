@@ -1,6 +1,6 @@
-package com.danilomendes.figurines.network.api;
+package com.danilomendes.figurines.data.remote.api;
 
-import com.danilomendes.figurines.model.entity.Company;
+import com.danilomendes.figurines.data.entity.Company;
 
 import java.util.List;
 

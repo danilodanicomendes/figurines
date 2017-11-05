@@ -1,18 +1,19 @@
-package com.danilomendes.figurines.model;
+package com.danilomendes.figurines.data.local;
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
-import com.danilomendes.figurines.model.entity.Company;
+import com.danilomendes.figurines.data.entity.Company;
 import com.danilomendes.figurines.utils.Helper;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by danilo on 29-10-2017.
  */
-public final class CompanyTable extends AbstractTable<Company> {
+public final class CompanyLocalDataSource extends AbstractLocalDataSource<Company> {
     static final String TABLE_NAME = "company";
 
     public static final String _CODE_NAME = "code_name";
@@ -26,10 +27,7 @@ public final class CompanyTable extends AbstractTable<Company> {
     public static final String _COORDINATE_LATITUDE = "coordinate_latitude";
     public static final String _COORDINATE_LONGITUDE = "coordinate_longitude";
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(
-                "CREATE TABLE " + TABLE_NAME + " ("
+    static final String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
                         + _CODE_NAME + " TEXT PRIMARY KEY, "
                         + _NAME + " TEXT, "
                         + _ADDRESS + " TEXT, "
@@ -39,8 +37,11 @@ public final class CompanyTable extends AbstractTable<Company> {
                         + _INSET_COLOR + " TEXT, "
                         + _SHORT_DESCRIPTION + " TEXT, "
                         + _COORDINATE_LATITUDE + " TEXT,"
-                        + _COORDINATE_LONGITUDE + " TEXT);"
-        );
+                        + _COORDINATE_LONGITUDE + " TEXT);";
+
+    @Inject
+    CompanyLocalDataSource(DatabaseHelper dbHelper) {
+        super(dbHelper);
     }
 
     @Override
@@ -61,7 +62,7 @@ public final class CompanyTable extends AbstractTable<Company> {
         return new Company(values);
     }
 
-    void deleteAllBut(List<Company> entries) {
+    public void deleteAllBut(List<Company> entries) {
         if (Helper.isEmpty(entries)) {
             return;
         }
@@ -76,6 +77,6 @@ public final class CompanyTable extends AbstractTable<Company> {
         }
 
         db.delete(getTableName(), _CODE_NAME + " NOT IN ("
-                + inQuery.toString() + ")", null);
+                + inQuery.toString() + ")");
     }
 }

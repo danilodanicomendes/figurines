@@ -1,11 +1,10 @@
-package com.danilomendes.figurines.model;
+package com.danilomendes.figurines.data.local;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.danilomendes.figurines.utils.L;
 
 import javax.inject.Inject;
 
@@ -18,29 +17,15 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private final Map<String, AbstractTable> mTables;
-
-    private final SQLiteDatabase mDatabase;
-
     @Inject
-    public DatabaseHelper(Application application) {
+    DatabaseHelper(Application application) {
         super(application, DATABASE_NAME, null, DATABASE_VERSION);
-
-        mTables = new HashMap<>(1);
-        mTables.put(CompanyTable.TABLE_NAME, new CompanyTable());
-
-        mDatabase = getWritableDatabase();
-
-        for (AbstractTable table : mTables.values()) {
-            table.setDb(mDatabase);
-        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        for (AbstractTable table : mTables.values()) {
-            table.onCreate(db);
-        }
+        L.log("danilo: onCreate database.");
+        db.execSQL(CompanyLocalDataSource.SQL_CREATE);
     }
 
     @Override
@@ -51,9 +36,5 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
-
-    CompanyTable getCompanyTable() {
-        return (CompanyTable) mTables.get(CompanyTable.TABLE_NAME);
     }
 }

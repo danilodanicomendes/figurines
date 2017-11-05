@@ -3,9 +3,9 @@ package com.danilomendes.figurines;
 import android.app.Application;
 import android.content.Context;
 
+import com.danilomendes.figurines.di.AppComponent;
 import com.danilomendes.figurines.di.AppModule;
 import com.danilomendes.figurines.di.DaggerNetworkComponent;
-import com.danilomendes.figurines.di.NetworkComponent;
 import com.danilomendes.figurines.di.NetworkModule;
 import com.danilomendes.figurines.utils.L;
 
@@ -14,7 +14,7 @@ import com.danilomendes.figurines.utils.L;
  */
 public class FigurinesApplication extends Application {
 
-    private NetworkComponent mNetworkComponent;
+    private AppComponent mAppComponent;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -32,13 +32,13 @@ public class FigurinesApplication extends Application {
         super.onCreate();
 
         L.log("onCreate");
-        mNetworkComponent = DaggerNetworkComponent.builder()
+        mAppComponent = DaggerNetworkComponent.builder()
                 .appModule(new AppModule(this))
                 .networkModule(new NetworkModule(BuildConfig.BASE_URL))
                 .build();
     }
 
-    public NetworkComponent getNetworkComponent() {
-        return mNetworkComponent;
+    public AppComponent getNetworkComponent() {
+        return mAppComponent;
     }
 }

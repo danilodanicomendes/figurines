@@ -1,6 +1,6 @@
 package com.danilomendes.figurines.ui.company_list;
 
-import com.danilomendes.figurines.model.entity.Company;
+import com.danilomendes.figurines.data.entity.Company;
 import com.danilomendes.figurines.ui.base.IView;
 
 import java.util.List;

@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.danilomendes.figurines.R;
-import com.danilomendes.figurines.model.entity.Company;
+import com.danilomendes.figurines.data.entity.Company;
 import com.danilomendes.figurines.ui.AbstractFragment;
 import com.danilomendes.figurines.ui.utils.views.CustomItemDecoration;
 

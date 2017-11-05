@@ -1,15 +1,15 @@
-package com.danilomendes.figurines.model.entity;
+package com.danilomendes.figurines.data.entity;
 
 import android.content.ContentValues;
 
 import com.bluelinelabs.logansquare.annotation.JsonObject;
-import com.danilomendes.figurines.model.CompanyTable;
+import com.danilomendes.figurines.data.local.CompanyLocalDataSource;
 
 /**
  * Created by danilo on 11-10-2017.
  */
 @JsonObject(fieldDetectionPolicy = JsonObject.FieldDetectionPolicy.NONPRIVATE_FIELDS_AND_ACCESSORS)
-public class Company implements IEntity {
+public final class Company implements IEntity {
 
     private String codeName;
 
@@ -34,31 +34,31 @@ public class Company implements IEntity {
 
     @SuppressWarnings("unused")
     public Company(ContentValues values) {
-        codeName = values.getAsString(CompanyTable._CODE_NAME);
-        name = values.getAsString(CompanyTable._NAME);
-        address = values.getAsString(CompanyTable._ADDRESS);
-        postalCode = values.getAsString(CompanyTable._POSTAL_CODE);
-        city = values.getAsString(CompanyTable._CITY);
-        logo = values.getAsString(CompanyTable._LOGO);
-        insetColor = values.getAsString(CompanyTable._INSET_COLOR);
-        shortDescription = values.getAsString(CompanyTable._SHORT_DESCRIPTION);
-        coordinates = new Coordinate(values.getAsLong(CompanyTable._COORDINATE_LATITUDE),
-                values.getAsLong(CompanyTable._COORDINATE_LONGITUDE));
+        codeName = values.getAsString(CompanyLocalDataSource._CODE_NAME);
+        name = values.getAsString(CompanyLocalDataSource._NAME);
+        address = values.getAsString(CompanyLocalDataSource._ADDRESS);
+        postalCode = values.getAsString(CompanyLocalDataSource._POSTAL_CODE);
+        city = values.getAsString(CompanyLocalDataSource._CITY);
+        logo = values.getAsString(CompanyLocalDataSource._LOGO);
+        insetColor = values.getAsString(CompanyLocalDataSource._INSET_COLOR);
+        shortDescription = values.getAsString(CompanyLocalDataSource._SHORT_DESCRIPTION);
+        coordinates = new Coordinate(values.getAsLong(CompanyLocalDataSource._COORDINATE_LATITUDE),
+                values.getAsLong(CompanyLocalDataSource._COORDINATE_LONGITUDE));
     }
 
     @Override
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-        values.put(CompanyTable._CODE_NAME, codeName);
-        values.put(CompanyTable._NAME, name);
-        values.put(CompanyTable._ADDRESS, address);
-        values.put(CompanyTable._POSTAL_CODE, postalCode);
-        values.put(CompanyTable._CITY, city);
-        values.put(CompanyTable._LOGO, logo);
-        values.put(CompanyTable._COORDINATE_LATITUDE, coordinates.getLatitude());
-        values.put(CompanyTable._COORDINATE_LONGITUDE, coordinates.getLongitude());
-        values.put(CompanyTable._INSET_COLOR, insetColor);
-        values.put(CompanyTable._SHORT_DESCRIPTION, shortDescription);
+        values.put(CompanyLocalDataSource._CODE_NAME, codeName);
+        values.put(CompanyLocalDataSource._NAME, name);
+        values.put(CompanyLocalDataSource._ADDRESS, address);
+        values.put(CompanyLocalDataSource._POSTAL_CODE, postalCode);
+        values.put(CompanyLocalDataSource._CITY, city);
+        values.put(CompanyLocalDataSource._LOGO, logo);
+        values.put(CompanyLocalDataSource._COORDINATE_LATITUDE, coordinates.getLatitude());
+        values.put(CompanyLocalDataSource._COORDINATE_LONGITUDE, coordinates.getLongitude());
+        values.put(CompanyLocalDataSource._INSET_COLOR, insetColor);
+        values.put(CompanyLocalDataSource._SHORT_DESCRIPTION, shortDescription);
         return values;
     }
 

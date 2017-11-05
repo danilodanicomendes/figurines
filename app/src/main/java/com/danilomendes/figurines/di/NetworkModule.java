@@ -2,7 +2,7 @@ package com.danilomendes.figurines.di;
 
 import android.app.Application;
 
-import com.danilomendes.figurines.network.NetworkManager;
+import com.danilomendes.figurines.data.remote.NetworkManager;
 
 import javax.inject.Singleton;
 

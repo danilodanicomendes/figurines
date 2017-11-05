@@ -1,4 +1,4 @@
-package com.danilomendes.figurines.model.entity;
+package com.danilomendes.figurines.data.entity;
 
 import android.content.ContentValues;
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.danilomendes.figurines.R;
-import com.danilomendes.figurines.model.entity.Company;
+import com.danilomendes.figurines.data.entity.Company;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

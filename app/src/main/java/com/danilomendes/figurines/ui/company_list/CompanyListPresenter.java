@@ -1,6 +1,6 @@
 package com.danilomendes.figurines.ui.company_list;
 
-import com.danilomendes.figurines.model.CompanyManager;
+import com.danilomendes.figurines.data.CompanyManager;
 import com.danilomendes.figurines.ui.base.AbstractPresenter;
 import com.danilomendes.figurines.utils.L;
 
@@ -20,9 +20,17 @@ public class CompanyListPresenter extends AbstractPresenter<CompanyListView> {
     }
 
     void getCompaniesList() {
+        getCompaniesList(false);
+    }
+
+    void refreshCompaniesList() {
+        getCompaniesList(true);
+    }
+
+    private void getCompaniesList(boolean force) {
         showLoading();
 
-        mCompositeDisposable.add(mManager.getAllCompanies()
+        mCompositeDisposable.add(mManager.getAllCompanies(force)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> {
                     L.log("onSuccess");

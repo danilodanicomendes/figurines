@@ -1,10 +1,10 @@
-package com.danilomendes.figurines.network;
+package com.danilomendes.figurines.data.remote;
 
 import android.app.Application;
 import android.content.Context;
 
 import com.danilomendes.figurines.BuildConfig;
-import com.danilomendes.figurines.network.api.CompanyService;
+import com.danilomendes.figurines.data.remote.api.CompanyService;
 import com.danilomendes.figurines.utils.L;
 import com.danilomendes.figurines.utils.NetworkUtils;
 import com.github.aurae.retrofit2.LoganSquareConverterFactory;

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Figurines</string>
+    <string name="screen_company_list_title">Company List</string>
+    <string name="fragment_comany_list">Companies</string>
+</resources>

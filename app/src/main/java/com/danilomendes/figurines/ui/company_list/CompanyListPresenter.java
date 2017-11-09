@@ -1,22 +1,21 @@
 package com.danilomendes.figurines.ui.company_list;
 
-import com.danilomendes.figurines.data.CompanyManager;
+import com.danilomendes.figurines.data.manager.ICompanyDataManager;
 import com.danilomendes.figurines.ui.base.AbstractPresenter;
-import com.danilomendes.figurines.utils.L;
+import com.danilomendes.figurines.util.L;
+import com.danilomendes.figurines.util.scheduler.SchedulerProvider;
 
 import javax.inject.Inject;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by danilo on 14-10-2017.
  */
-public class CompanyListPresenter extends AbstractPresenter<CompanyListView> {
-    private final CompanyManager mManager;
+public class CompanyListPresenter extends AbstractPresenter<ICompanyListView> {
+    private final ICompanyDataManager mCompanyDataSource;
 
     @Inject
-    CompanyListPresenter(CompanyManager manager) {
-        this.mManager = manager;
+    CompanyListPresenter(ICompanyDataManager manager) {
+        this.mCompanyDataSource = manager;
     }
 
     void getCompaniesList() {
@@ -30,8 +29,8 @@ public class CompanyListPresenter extends AbstractPresenter<CompanyListView> {
     private void getCompaniesList(boolean force) {
         showLoading();
 
-        mCompositeDisposable.add(mManager.getAllCompanies(force)
-                .observeOn(AndroidSchedulers.mainThread())
+        mCompositeDisposable.add(mCompanyDataSource.getAllCompanies(force)
+                .observeOn(SchedulerProvider.Companion.ui())
                 .subscribe(o -> {
                     L.log("onSuccess");
                     if (isViewAttached()) {

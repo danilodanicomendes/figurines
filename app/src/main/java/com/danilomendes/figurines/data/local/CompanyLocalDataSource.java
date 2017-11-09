@@ -4,16 +4,13 @@ import android.content.ContentValues;
 import android.support.annotation.NonNull;
 
 import com.danilomendes.figurines.data.entity.Company;
-import com.danilomendes.figurines.utils.Helper;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 /**
  * Created by danilo on 29-10-2017.
  */
-public final class CompanyLocalDataSource extends AbstractLocalDataSource<Company> {
+public class CompanyLocalDataSource extends AbstractLocalDataSource<Company> {
     static final String TABLE_NAME = "company";
 
     public static final String _CODE_NAME = "code_name";
@@ -40,7 +37,7 @@ public final class CompanyLocalDataSource extends AbstractLocalDataSource<Compan
                         + _COORDINATE_LONGITUDE + " TEXT);";
 
     @Inject
-    CompanyLocalDataSource(DatabaseHelper dbHelper) {
+    public CompanyLocalDataSource(DatabaseHelper dbHelper) {
         super(dbHelper);
     }
 
@@ -60,23 +57,5 @@ public final class CompanyLocalDataSource extends AbstractLocalDataSource<Compan
     @Override
     Company instantiateEntity(ContentValues values) {
         return new Company(values);
-    }
-
-    public void deleteAllBut(List<Company> entries) {
-        if (Helper.isEmpty(entries)) {
-            return;
-        }
-
-        StringBuilder inQuery = new StringBuilder(entries.size());
-        for (int i = 0; i < entries.size(); i++) {
-            inQuery.append('\'').append(entries.get(i).getCodeName()).append('\'');
-
-            if (i < entries.size() - 1) {
-                inQuery.append(',');
-            }
-        }
-
-        db.delete(getTableName(), _CODE_NAME + " NOT IN ("
-                + inQuery.toString() + ")");
     }
 }

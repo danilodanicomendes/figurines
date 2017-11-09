@@ -1,9 +1,10 @@
-package com.danilomendes.figurines.data;
+package com.danilomendes.figurines.data.manager;
 
 import com.danilomendes.figurines.data.entity.Company;
 import com.danilomendes.figurines.data.local.CompanyLocalDataSource;
-import com.danilomendes.figurines.data.remote.NetworkManager;
-import com.danilomendes.figurines.utils.L;
+import com.danilomendes.figurines.data.remote.CompanyRemoteDataSource;
+import com.danilomendes.figurines.util.L;
+import com.danilomendes.figurines.util.scheduler.SchedulerProvider;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,34 +14,33 @@ import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by danilo on 14-10-2017.
  */
-public class CompanyManager {
+public class CompanyDataManager implements ICompanyDataManager {
     private final CompanyLocalDataSource mLocalDataSource;
-    private final NetworkManager mNetworkManager;
+    private final CompanyRemoteDataSource mCompanyRemoteDataSource;
 
     /**
      * Cache that is filled after a remote request is done.
      */
     private Map<String, Company> mCachedCompanies;
 
-    // TODO Change 1st param to a CompanyLocalDataSource
     @Inject
-    CompanyManager(CompanyLocalDataSource localDataSource, NetworkManager networkManager) {
+    public CompanyDataManager(CompanyLocalDataSource localDataSource, CompanyRemoteDataSource companyRemoteDataSource) {
         this.mLocalDataSource = localDataSource;
-        this.mNetworkManager = networkManager;
+        this.mCompanyRemoteDataSource = companyRemoteDataSource;
     }
 
+    @Override
     public Single<List<Company>> getAllCompanies(boolean force) {
         if (!force && mCachedCompanies != null) {
             return Flowable.fromIterable(mCachedCompanies.values()).toList();
         }
 
-        return Single.just(mNetworkManager.isNetworkAvailable())
-                .subscribeOn(Schedulers.io())
+        return Single.just(mCompanyRemoteDataSource.isNetworkAvailable())
+                .subscribeOn(SchedulerProvider.Companion.io())
                 .flatMap(isNetworkAvailable -> {
                     L.log("Is network available? " + isNetworkAvailable);
                     // If there's no network then fetch data from database.
@@ -51,7 +51,7 @@ public class CompanyManager {
                     }
 
                     // After retrieving new data from the server store it into the database.
-                    return mNetworkManager.getCompaniesService().queryCompanies()
+                    return mCompanyRemoteDataSource.getCompaniesService().queryCompanies()
                             .doAfterSuccess(this::saveCompanies);
                 });
     }

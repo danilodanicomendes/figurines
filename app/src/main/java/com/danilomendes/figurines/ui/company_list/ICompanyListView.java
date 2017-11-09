@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by danilo on 14-10-2017.
  */
-public interface CompanyListView extends IView {
+public interface ICompanyListView extends IView {
 
     void onLoading();
 

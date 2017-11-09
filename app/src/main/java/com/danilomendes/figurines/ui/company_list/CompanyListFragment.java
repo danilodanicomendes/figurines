@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.danilomendes.figurines.R;
 import com.danilomendes.figurines.data.entity.Company;
-import com.danilomendes.figurines.ui.AbstractFragment;
+import com.danilomendes.figurines.ui.base.AbstractFragment;
 import com.danilomendes.figurines.ui.utils.views.CustomItemDecoration;
 
 import java.util.Arrays;
@@ -23,7 +23,7 @@ import javax.inject.Inject;
 /**
  * Created by danilo on 14-10-2017.
  */
-public class CompanyListFragment extends AbstractFragment implements CompanyListView {
+public class CompanyListFragment extends AbstractFragment implements ICompanyListView {
 
     @Inject CompanyListPresenter mCompanyListPresenter;
     private RecyclerView mRecyclerView;
@@ -82,7 +82,14 @@ public class CompanyListFragment extends AbstractFragment implements CompanyList
 
     @Override
     protected void injectDependencies() {
-        getApplication().getNetworkComponent().inject(this);
+        super.injectDependencies();
+        getApplication().getCompanyComponent().inject(this);
+    }
+
+    @Override
+    protected void ejectDependencies() {
+        super.ejectDependencies();
+        getApplication().clearCompanyComponent();
     }
 
     @Override

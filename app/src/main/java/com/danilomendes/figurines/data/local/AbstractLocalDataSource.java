@@ -9,8 +9,9 @@ import android.support.annotation.NonNull;
 
 import com.danilomendes.figurines.BuildConfig;
 import com.danilomendes.figurines.data.entity.IEntity;
-import com.danilomendes.figurines.utils.Helper;
-import com.danilomendes.figurines.utils.L;
+import com.danilomendes.figurines.util.Helper;
+import com.danilomendes.figurines.util.L;
+import com.danilomendes.figurines.util.scheduler.SchedulerProvider;
 import com.squareup.sqlbrite2.BriteDatabase;
 import com.squareup.sqlbrite2.SqlBrite;
 
@@ -18,7 +19,6 @@ import java.util.List;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by danilo on 29-10-2017.
@@ -40,7 +40,7 @@ abstract class AbstractLocalDataSource<T extends IEntity> implements BaseColumns
         if (BuildConfig.DEBUG) {
             builder.logger(L::log);
         }
-        db = builder.build().wrapDatabaseHelper(dbHelper, Schedulers.io());
+        db = builder.build().wrapDatabaseHelper(dbHelper, SchedulerProvider.Companion.io());
     }
 
     public void save(List<T> entries) {

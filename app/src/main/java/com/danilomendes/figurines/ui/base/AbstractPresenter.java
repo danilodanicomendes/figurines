@@ -2,7 +2,7 @@ package com.danilomendes.figurines.ui.base;
 
 import android.support.annotation.NonNull;
 
-import com.danilomendes.figurines.utils.L;
+import com.danilomendes.figurines.util.L;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -14,6 +14,7 @@ public abstract class AbstractPresenter<T> {
     protected CompositeDisposable mCompositeDisposable;
 
     public final void attachView(@NonNull T view) {
+        L.log("Attaching view.");
         mView = view;
         mCompositeDisposable = new CompositeDisposable();
     }

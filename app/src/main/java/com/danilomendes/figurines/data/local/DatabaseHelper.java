@@ -4,7 +4,7 @@ import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.danilomendes.figurines.utils.L;
+import com.danilomendes.figurines.util.L;
 
 import javax.inject.Inject;
 
@@ -18,13 +18,13 @@ public final class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     @Inject
-    DatabaseHelper(Application application) {
+    public DatabaseHelper(Application application) {
         super(application, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        L.log("danilo: onCreate database.");
+        L.log("Database onCreate.");
         db.execSQL(CompanyLocalDataSource.SQL_CREATE);
     }
 

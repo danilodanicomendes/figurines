@@ -2,11 +2,11 @@ package com.danilomendes.figurines.data.remote;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.danilomendes.figurines.BuildConfig;
-import com.danilomendes.figurines.data.remote.api.CompanyService;
-import com.danilomendes.figurines.utils.L;
-import com.danilomendes.figurines.utils.NetworkUtils;
+import com.danilomendes.figurines.util.L;
+import com.danilomendes.figurines.util.NetworkUtils;
 import com.github.aurae.retrofit2.LoganSquareConverterFactory;
 
 import javax.inject.Inject;
@@ -44,11 +44,11 @@ public class NetworkManager {
                 .build();
     }
 
-    public boolean isNetworkAvailable() {
+    boolean isNetworkAvailable() {
         return NetworkUtils.isNetworkAvailable(mContext);
     }
 
-    public CompanyService getCompaniesService() {
-        return mRetrofit.create(CompanyService.class);
+    @NonNull Retrofit getRetrofit() {
+        return mRetrofit;
     }
 }

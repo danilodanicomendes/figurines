@@ -1,4 +1,4 @@
-package com.danilomendes.figurines.utils;
+package com.danilomendes.figurines.util;
 
 import android.util.Log;
 

@@ -1,6 +1,6 @@
 [
   {
-    "codeName": "impresa",
+    "codeName": "c_impresa",
     "name": "Impresa",
     "address": "Edifício Impresa, Rua Calvet de Magalhães, 242 Paço de Arcos",
     "postalCode": "2770-022",
@@ -12,10 +12,36 @@
       "longitude": -9.292752
     },
     "insetColor": "#F44336",
-    "shortDescription": "Portuguese media conglomerate, headquartered in Paço de Arcos, in Oeiras municipality. It is the owner of SIC TV channel, and Expresso newspaper, among other leading media."
+    "shortDescription": "Portuguese media conglomerate, headquartered in Paço de Arcos, in Oeiras municipality. It is the owner of SIC TV channel, and Expresso newspaper, among other leading media.",
+    "labels": [
+      {
+        "id": "news",
+        "name": "News"
+      },
+      {
+        "id": "media",
+        "name": "Media"
+      },
+      {
+        "id": "tv",
+        "name": "Television"
+      },
+      {
+        "id": "magazine",
+        "name": "Magazine"
+      },
+      {
+        "id": "publishing",
+        "name": "Publishing"
+      },
+      {
+        "id": "sa",
+        "name": "SA"
+      }
+    ]
   },
   {
-    "codeName": "lusa",
+    "codeName": "c_lusa",
     "name": "Lusa",
     "address": "R. Dr. João Couto, Lote C",
     "postalCode": "1500-236",
@@ -27,10 +53,24 @@
       "longitude": -9.189124
     },
     "insetColor": "#F44336",
-    "shortDescription": "Portuguese News Agency, is the largest Portuguese news agency, incorporated on 28 November 1986."
+    "shortDescription": "Portuguese News Agency, is the largest Portuguese news agency, incorporated on 28 November 1986.",
+    "labels": [
+      {
+        "id": "news_agency",
+        "name": "News agency"
+      },
+      {
+        "id": "media",
+        "name": "Media"
+      },
+      {
+        "id": "sa",
+        "name": "SA"
+      }
+    ]
   },
   {
-    "codeName": "global_media_group",
+    "codeName": "c_global_media_group",
     "name": "Global Media Group",
     "address": "Rua Tomás da Fonseca, Torre E, 3º",
     "postalCode": "1600-209",
@@ -42,6 +82,20 @@
       "longitude": -9.175279
     },
     "insetColor": "#FF9800",
-    "shortDescription": "Portuguese media holding company founded by Portuguese sports mogul and FC Porto S.A.D.'s shareholder Joaquim Oliveira."
+    "shortDescription": "Portuguese media holding company founded by Portuguese sports mogul and FC Porto S.A.D.'s shareholder Joaquim Oliveira.",
+    "labels": [
+      {
+        "id": "news_agency",
+        "name": "News agency"
+      },
+      {
+        "id": "media",
+        "name": "Media"
+      },
+      {
+        "id": "sa",
+        "name": "SA"
+      }
+    ]
   }
 ]

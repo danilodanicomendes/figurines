@@ -1,4 +1,4 @@
-package com.danilomendes.figurines.ui.company_list;
+package com.danilomendes.figurines.ui.companylist;
 
 import com.danilomendes.figurines.data.manager.ICompanyDataManager;
 import com.danilomendes.figurines.ui.base.AbstractPresenter;

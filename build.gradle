@@ -37,6 +37,7 @@ ext {
     daggerVersion = '2.11'
     rxandroidVersion = '2.0.1'
     rxjavaVersion = '2.1.3'
+    rxkotlinVersion = '2.1.0'
     sqlbrite = '2.0.0'
     retrofitVersion = '2.3.0'
     retrofitLoganAdapterVersion = '1.4.1'

@@ -1,7 +1,7 @@
 package com.danilomendes.figurines.data.manager;
 
 import com.danilomendes.figurines.di.ScreenScoped;
-import com.danilomendes.figurines.ui.company_list.CompanyListFragment;
+import com.danilomendes.figurines.ui.companylist.CompanyListFragment;
 
 import dagger.Subcomponent;
 

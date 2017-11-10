@@ -1,4 +1,4 @@
-package com.danilomendes.figurines.ui.company_list;
+package com.danilomendes.figurines.ui.companylist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

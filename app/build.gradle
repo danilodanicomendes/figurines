@@ -1,3 +1,4 @@
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -23,7 +24,7 @@ android {
 
     buildTypes {
         debug {
-            testCoverageEnabled = true
+            testCoverageEnabled = false
         }
         release {
             minifyEnabled false

@@ -6,7 +6,7 @@ import io.reactivex.schedulers.Schedulers
 
 /**
  * Provides the PROD schedulers needed.
- * (This is intended solely so tests flavor can mock this schedulers)
+ * (This is intended solely so tests flavor can mock these schedulers)
  *
  * Created by danilo on 09-11-2017.
  */

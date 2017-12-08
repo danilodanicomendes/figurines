@@ -5,7 +5,6 @@ import com.danilomendes.figurines.data.entity.Company
 import com.danilomendes.figurines.data.local.CompanyLocalDataSource
 import com.danilomendes.figurines.data.remote.CompanyRemoteDataSource
 import com.danilomendes.figurines.data.remote.api.CompanyService
-import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Test
@@ -46,8 +45,12 @@ class CompanyDataManagerTest: BaseTest() {
     @Test
     fun testGetAllCompaniesWithoutForceAndWithNetworkAvailable() {
         setNetworkAvailability(true)
-        _when(mRemoteDataSource.companiesService)
-                .thenReturn(CompanyService {Single.just(singleList)})
+        _when(mRemoteDataSource.getCompaniesService())
+                .thenReturn(object : CompanyService {
+                    override fun queryCompanies(): Single<List<Company>> {
+                        return Single.just(singleList)
+                    }
+                })
 
         val allCompanies = mCompanyDataManager.getAllCompanies(false)
 
@@ -58,10 +61,10 @@ class CompanyDataManagerTest: BaseTest() {
         Assert.assertFalse(allCompanies.blockingGet().isEmpty())
 
         // Verify if the network was validated once.
-        verify(mRemoteDataSource).isNetworkAvailable
+        verify(mRemoteDataSource).isNetworkAvailable()
 
         // Verify if the queryCompanies request was done.
-        verify(mRemoteDataSource).companiesService
+        verify(mRemoteDataSource).getCompaniesService()
 
         // Confirm that the local data source was not called.
         verify(mLocalDataSource, never())
@@ -70,7 +73,7 @@ class CompanyDataManagerTest: BaseTest() {
     @Test
     fun testGetAllCompaniesFromDatabaseWithoutNetworkAvailable() {
         setNetworkAvailability(false)
-        _when(mLocalDataSource.all).thenReturn(Flowable.just(singleList))
+        _when(mLocalDataSource.getAll()).thenReturn(Single.just(singleList))
 
         val allCompanies = mCompanyDataManager.getAllCompanies(false)
 
@@ -81,7 +84,7 @@ class CompanyDataManagerTest: BaseTest() {
         Assert.assertFalse(allCompanies.blockingGet().isEmpty())
 
         // Verify if the network was validated once.
-        verify(mRemoteDataSource).isNetworkAvailable
+        verify(mRemoteDataSource).isNetworkAvailable()
 
         // Confirm that the local data source was called
         verify(mLocalDataSource)
@@ -95,8 +98,8 @@ class CompanyDataManagerTest: BaseTest() {
      * @param isAvailable
      */
     private fun setNetworkAvailability(isAvailable: Boolean) {
-        _when(mRemoteDataSource.isNetworkAvailable).thenReturn(isAvailable)
-        Assert.assertThat(mRemoteDataSource.isNetworkAvailable, _is(isAvailable))
+        _when(mRemoteDataSource.isNetworkAvailable()).thenReturn(isAvailable)
+        Assert.assertThat(mRemoteDataSource.isNetworkAvailable(), _is(isAvailable))
         Mockito.clearInvocations(mRemoteDataSource)
     }
 }
